@@ -1,0 +1,173 @@
+LungCap <- read.csv("C:/Users/lipik/OneDrive/Desktop/rrr/womendataset (2).csv",header=T)
+LungCap<-data.frame(LungCap)
+
+
+x<- women$height
+y<- women$weight
+plot(x,y,main='hvs w',xlab='h',ylab='y',pch=19,frame=FALSE)
+
+x<-mtcars$qsec
+y<-mtcars$cyl
+plot(x,y,main='hvs w',xlab='h',ylab='y',pch=19,frame=FALSE)
+  
+  data()
+  
+  x<- c(10,20,30,40)
+  y<- c(5,3,6,9)
+  cor(x,y)
+  plot(x,y,main='hvs w',xlab='h',ylab='y',pch=19,frame=FALSE)
+
+  x<-c(1,12,45,46,47,38,29,40)
+  y<-c(10,15,20,25,30,35,40,45)
+  cor(x,y)
+  plot(x, y, main = "Main title",
+       + xlab = "X axis title", ylab = "Y axis title", pch = 19, frame = FALSE)
+  
+  plot(x,y,main='hvs w',xlab='h',ylab='y',pch=19,frame=FALSE)
+  
+  data()
+  x<-
+    
+    view(women)
+data(BJsales)  
+view(BJsales)
+head(BJsales.lead)
+x<-BJsales.lead
+y<-Nile
+
+#2nd pro
+
+LungCapdata<- read.csv("C:\\Users\\lipik\\OneDrive\\Desktop\\rrr\\womendataset (2).csv",header=TRUE)
+LungCapdata<-data.frame(LungCapdata)
+attach(LungCapdata)
+
+AgeGroups<- cut(LungCapdata$Age,breaks=c(0,13,15,17),labels=c("0-13","13-15","15-17"))
+
+boxplot(LungCapdata$LungCap[LungCapdata$Age>=18]~LungCapdata$Smoke[LungCapdata$Age>=18],main='svsn',las=1)
+boxplot(LungCapdata$LungCap~LungCapdata$Smoke*AgeGroups,main='svsn',col=c(4,2),las=2)
+
+#3rd pro
+airqual<-airquality
+
+boxplot(airqual$Ozone,horizontal=TRUE)
+boxplot(airqual$Wind,horizontal=TRUE)
+
+updated_airqual=subset(airqual,Ozone<130,Wind<17)
+boxplot(updated_airqual)
+summary(airqual)
+
+airqual$ozone[is.na(airqual$Ozone)]<-mean(updated_airqual$Ozone)
+airqual$Solar.R[is.na(airqual$Solar.R)]<-mean(updated_airqual$Solar.R,na.rm=TRUE)
+summary(airqual)
+data_air<-subset(airqual,Ozone<70,Wind<17)
+boxplot(data_air)
+nrow(data_air)
+data_airquality=subset(airqual,Ozone<70 & Wind<17 & Wind>2)
+boxplot(data_airquality)
+airqual=airquality 
+summary(airquality) 
+
+airqual[!complete.cases(airqual),]
+
+boxplot(airqual)
+
+boxplot(airqual$Ozone,horizontal = TRUE) 
+boxplot(airqual$Wind,horizontal = TRUE) 
+
+Updated_airqual=subset(airqual,Ozone<130 & Wind<17) 
+boxplot(Updated_airqual)
+ 
+ airqual$Ozone[is.na(airqual$Ozone)]<-mean(Updated_airqual$Ozone)
+
+ summary(airqual)
+
+airqual$Solar.R[is.na(airqual$Solar.R)]<-mean(Updated_airqual$Solar.R,na.rm = TRUE)
+
+summary(airqual)
+
+data_airquality=subset(airqual,Ozone<70 & Wind<17)
+boxplot(data_airquality)
+nrow(data_airquality)
+data_airquality=subset(airqual,Ozone<70 & Wind<17 & Wind>2)
+boxplot(data_airquality)
+
+#5th
+
+rm(list=ls(all.name=TRUE))
+
+  x <- data.frame(
+   
+    name = c("Bala","Ganesh","Geevan"),
+    age = c(43,38,42),
+    education = c(2.0,4.2,4.1)
+  )
+  print(x)
+age=x$age
+edu=x$education
+print(age)
+print(edu)
+M1<- matrix(c(age,edu),nrow=3,byrow=FALSE)
+print(M1)
+E1=dist(M1,method="euclidean")
+print(E1)
+ageD = age/10
+print(ageD)
+
+M2<- matrix(c(ageD,edu),nrow=3,byrow=FALSE)
+print(M2)
+E2=dist(M2,method="euclidean")
+print(E2)
+range<-max(age)-min(age)
+min_age=(age-min(age))/range
+rangA = max(age)-min(age)     # compute range
+print(range)
+mi_maA = (age-min(age))/rangA
+print(mi_maA)
+#----------------------Normalize Education attribute------------
+rangE = max(edu)-min(edu)
+print(range)
+mi_maE = (edu-min(edu))/rangE
+print(mi_maE)
+#----------------------------------
+
+M3 <-matrix(c(mi_maA,mi_maE), nrow = 3, byrow = FALSE)
+print(M3)
+E3 = dist(M3,method= 'euclidean')        # Call Euclidean distance and get E3
+print(E3)
+print("_______Data frame with different similarity measure matrixresults______")
+print(x)
+print(E1)
+print(E2)
+print(E3)
+
+#4th
+library(psych)
+install.packages("psych", repos = "https://cloud.r-project.org/")
+install.packages("tmvnsim")
+install.packages("psych")
+
+data("iris") 
+str(iris) 
+summary(iris)
+set.seed(111) 
+ind <- sample(2, nrow(iris),
+              replace = TRUE,
+              prob = c(0.8, 0.2))
+training <- iris[ind==1,]
+testing <- iris[ind==2,] 
+
+library(psych) 
+
+pairs.panels(training[,-5],
+             gap = 0,
+             bg = c("red", "yellow", "blue")[training$Species],
+             pch=21)
+pc <- prcomp(training[,-5],
+             center = TRUE,
+             scale. = TRUE )
+  attributes(pc)
+pc$center
+pc$scale
+print(pc)
+summary(pc)
+
