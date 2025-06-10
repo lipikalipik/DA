@@ -1,0 +1,75 @@
+# Load necessary libraries
+# Uncomment the following line if you haven't installed the arules package yet
+# install.packages("arules")
+library(arules)
+
+# Read the CSV file
+SupMarTra <- read.csv("C:/Users/User/Downloads/snackitem (1).csv", header = TRUE, colClasses = "factor")
+
+# Get information about the dataset
+summary(SupMarTra)
+length(SupMarTra)
+dim(SupMarTra)
+View(SupMarTra)
+
+# Find association rules using Apriori algorithm with initial parameters
+rules <- apriori(SupMarTra, parameter = list(supp = 0.5, conf = 0.8))
+inspect(rules)
+
+# Find association rules with specified length and excluding "NO" items
+rules <- apriori(SupMarTra, parameter = list(minlen = 2, maxlen = 5, supp = 0.5, conf = 0.8),
+                 appearance = list(none = c("I1=NO", "I2=NO", "I3=NO", "I4=NO", "I5=NO")))
+inspect(rules)
+
+# Write rules to a CSV file
+write(rules, file = "D:/data3.csv", sep = ",")
+
+# Load arulesViz package
+# Uncomment the following line if you haven't installed the arulesViz package yet
+#install.packages("arulesViz")
+library(arulesViz)
+
+# Plot the rules using different methods
+plot(rules)  # Default plot
+plot(rules, method = "grouped")  # Grouped matrix plot
+plot(rules, method = "graph", control = list(type = "items"))  # Graph-based visualization
+
+8th program:-
+
+# Load necessary libraries
+# Uncomment the following line if you haven't installed the arules package yet
+# install.packages("arules")
+library(arules)
+
+# Read the CSV file
+SupMarTra <- read.csv("C:/Users/User/Downloads/snackitem (1).csv", header = TRUE, colClasses = "factor")
+
+# Get information about the dataset
+summary(SupMarTra)
+length(SupMarTra)
+dim(SupMarTra)
+View(SupMarTra)
+
+# Convert the dataset to transactions
+transactions <- as(SupMarTra, "transactions")
+
+# Find frequent itemsets with minimum support threshold of 50%
+frequent_itemsets <- apriori(transactions, parameter = list(target = "frequent itemsets", supp = 0.5))
+inspect(frequent_itemsets)
+
+# Generate association rules with minimum support of 50% and minimum confidence of 80%
+rules <- apriori(transactions, parameter = list(supp = 0.5, conf = 0.8))
+inspect(rules)
+
+# Write rules to a CSV file
+write(rules, file = "D:/data3.csv", sep = ",")
+
+# Load arulesViz package
+# Uncomment the following line if you haven't installed the arulesViz package yet
+# install.packages("arulesViz")
+library(arulesViz)
+
+# Plot the rules using different methods
+plot(rules)  # Default plot
+plot(rules, method = "grouped")  # Grouped matrix plot
+plot(rules, method = "graph", control = list(type = "items"))  # Graph-based visualization
