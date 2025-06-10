@@ -1,0 +1,31 @@
+# Create a data frame
+df <- data.frame(hours = c(1, 2, 4, 5, 5, 6, 6, 7, 8, 10, 11, 11, 12, 12, 14),
+                 score = c(64, 66, 76, 73, 74, 81, 83, 82, 80, 88, 84, 82, 91, 93, 89))
+
+# View first six rows
+head(df)
+
+# Create a scatterplot to check for linear relationship
+plot(df$hours, df$score, main = 'Hours Studied vs. Exam Score', xlab = 'Hours Studied', ylab = 'Exam Score')
+
+# Create a boxplot to check for outliers
+boxplot(df$score, main = 'Boxplot of Exam Scores', ylab = 'Exam Score')
+
+# Fit simple linear regression model
+model <- lm(score ~ hours, data = df)
+
+# View model summary
+summary(model)
+
+# Define residuals of the model
+res <- resid(model)
+
+# Produce residual vs. fitted plot
+plot(fitted(model), res, main = 'Residuals vs. Fitted', xlab = 'Fitted Values', ylab = 'Residuals')
+
+# Add a horizontal line at 0
+abline(h = 0, col = 'red')
+
+# Create Q-Q plot for residuals
+qqnorm(res, main = 'Normal Q-Q Plot')
+qqline(res, col = 'red')
