@@ -1,0 +1,18 @@
+rm(list = ls(all.names = TRUE)) # Remove all objects in the present in the workspace
+input = read.csv("filter.csv") # Read the CSV file from working directory
+print(input)
+x = cor(input[,c(2:7)]) # Find correlation of all rows with 2nd to 7th column (attributes)
+print(x)
+pairs(input[,c(2:7)]) ) #print the scatter plot matrix for correlation matrix
+y = x[6,1:5] #Extract the last row of correlation matrix excluding company
+print(y)
+x= sort(y,decreasing = TRUE)
+print(x)
+cnt =1
+print("selected attributes")
+while(cnt<=length(y)) # Loop to display all attributes having correlation with target
+# attribute greater than threshold (0.5)
+{ if (y[cnt]>.5)
+print(y[cnt])
+cnt=cnt+1
+}
