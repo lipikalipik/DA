@@ -1,0 +1,32 @@
+rm(list = ls(all.names = TRUE))  # Clear workspace
+
+# Load CSV file
+input = read.csv("C:\\Users\\lipik\\OneDrive\\Desktop\\contacts_data.csv")  # Make sure 'filter.csv' is in your working directory
+print(input)
+
+# Calculate correlation matrix for columns 2 to 7 (excluding name/contact column)
+x = cor(input[, 2:7])  # Columns should be numeric
+print(x)
+
+# Scatter plot matrix for columns 2 to 7
+pairs(input[, 2:7])  # Removed the extra parenthesis that was causing error
+
+# Extract correlation values of the last row (assumed to be the target attribute 'Company')
+# Here, 6th row = 'Company' correlations with first 5 predictors
+y = x[6, 1:5]
+print(y)
+
+# Sort correlations in decreasing order
+sorted_corr = sort(y, decreasing = TRUE)
+print(sorted_corr)
+
+# Filter and print attributes with correlation > 0.5
+cnt = 1
+print("Selected attributes with correlation > 0.5:")
+while(cnt <= length(y)) {
+  if (y[cnt] > 0.5) {
+    print(paste("Correlation:", y[cnt]))
+  }
+  cnt = cnt + 1
+}
+
