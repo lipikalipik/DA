@@ -1,0 +1,16 @@
+x<-women$height
+y<-women$weight
+
+plot(x,y,main="height vs weight",xlab="height",ylab="weight",pch=19,frame="False")
+
+
+x<-mtcars$mpg
+y<-mtcars$disp
+
+plot(x,y,main="height vs weight",xlab="height",ylab="weight",pch=19,frame="False")
+
+
+x<-c(30,20,10)
+y<-c(10,20,30)
+cor(x,y)
+
