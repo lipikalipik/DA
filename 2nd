@@ -1,0 +1,15 @@
+LungCapData<-read.csv("C:\\Users\\lipik\\OneDrive\\Desktop\\LungCapData.csv",header=T)
+LungCapData<-data.frame(LungCapData)
+attach(LungCapData)
+
+AgeGroups<-cut(LungCapData$Age,
+breaks=c(0,13,15,17,20),
+labels=c("<=13","14/15","16/17",">=18"))
+
+boxplot(LungCapData$LungCap~LungCapData$Smoke,xlab="Age",ylab="smoke",main="smoke Vs non smoke",las=1)
+
+boxplot(LungCapData$LungCap[LungCapData$Age>=18]~LungCapData$Smoke[LungCapData$Age>=18],xlab="Age",ylab="smoke",main="smoke Vs non smoke",las=1)
+
+boxplot(LungCapData$LungCap~LungCapData$Smoke*AgeGroups,las=2,col=c(2,4))
+
+
