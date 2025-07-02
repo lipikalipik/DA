@@ -1,0 +1,26 @@
+rm(list=ls(all.names=TRUE))
+x<-data.frame(name=c("B","G","J"),
+              age=c(43,38,42),
+              edu=c(2.0,4.2,4.1))
+age<-x$age
+print(age)
+edu<-x$edu
+print(edu)
+
+M1=matrix(c(age,edu),3,byrow=FALSE)
+print(M1)
+E1=dist(M1,method="euclidean")
+print(E1)
+
+ageD=age/10
+M2=matrix(c(ageD,edu),3,byrow=FALSE)
+print(M2)
+E2=dist(M2,method="euclidean")
+print(E2)
+
+min_a=(age-min(age))/(max(age)-min(age))
+min_e=(edu-min(edu))/(max(edu)-min(edu))
+M3=matrix(c(min_a,min_e),3,byrow=FALSE)
+print(M2)
+E3=dist(M3,method="euclidean")
+print(E3)
